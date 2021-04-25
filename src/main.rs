@@ -35,6 +35,7 @@ async fn main() {
         cursor.draw();
         draw_text(&format!("FPS: {}", get_fps()), screen_width() - 200.0, 20.0, 20.0, WHITE);
         draw_text(&format!("Score: {:.2}", score), screen_width() - 200.0, 40.0, 20.0, WHITE);
+        draw_text("Version: 0.1.0", screen_width() - 200.0, 60.0, 20.0, WHITE);
         next_frame().await
         
     }
