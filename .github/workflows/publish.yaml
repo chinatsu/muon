@@ -4,7 +4,7 @@ on:
       - 'master'
       paths:
       - build/**
-      - .github/workflows/publish.yml
+      - .github/workflows/publish.yaml
 jobs:
     deploy:
         name: Deploy new version of game
