@@ -28,13 +28,13 @@ jobs:
             path: target/
             key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
         - name: Set up toolchain
-          uses: actions-rs/toolchain@v2
+          uses: actions-rs/toolchain@v1
           with:
             toolchain: stable
             target: wasm32-unknown-unknown
             override: true
         - name: Build binary
-          uses: actions-rs/cargo@v2
+          uses: actions-rs/cargo@v1
           with:
             use-cross: true
             command: build
