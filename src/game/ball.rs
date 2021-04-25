@@ -1,14 +1,14 @@
-use macroquad::prelude::{screen_height, screen_width, draw_circle};
-use macroquad::rand::{rand};
-use macroquad::color::Color;
 use crate::random_color;
+use macroquad::color::Color;
+use macroquad::prelude::{draw_circle, screen_height, screen_width};
+use macroquad::rand::rand;
 
 #[derive(Clone, Copy)]
 pub struct Ball {
     x: f32,
     y: f32,
     radius: f32,
-    color: Color
+    color: Color,
 }
 
 impl Ball {
@@ -26,7 +26,7 @@ impl Ball {
             x: (rand() as f32 + radius) % screen_width(),
             y: (rand() as f32 + radius) % screen_height(),
             radius: radius,
-            color: color
+            color: color,
         }
     }
 
@@ -49,6 +49,6 @@ impl Ball {
     pub fn score(&self, other: &Ball) -> f32 {
         let dx = other.x - self.x;
         let dy = other.y - self.y;
-        (1.0/(dy + dx).abs()).min(1.0) * 100.0
+        1.0 / ((dy + dx).abs() + 1.0) * 100.0
     }
 }
