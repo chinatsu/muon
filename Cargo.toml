@@ -1,0 +1,11 @@
+[package]
+name = "muon"
+version = "0.1.0"
+authors = ["Kent D <kent.daleng@nav.no>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+macroquad = "0.3"
+quad-rand = "0.2"
