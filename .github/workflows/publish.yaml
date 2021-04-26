@@ -2,9 +2,6 @@ on:
   push:
       branches:
       - 'master'
-      paths:
-      - build/**
-      - .github/workflows/publish.yaml
 jobs:
     deploy:
         name: Deploy new version of game
