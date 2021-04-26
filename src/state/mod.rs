@@ -11,4 +11,6 @@ pub trait GameLoop {
     fn handle_inputs(&mut self);
     fn update(&mut self);
     fn draw(&self);
+    fn wants_switch(&self) -> bool;
+    fn reset_switch(&mut self);
 }

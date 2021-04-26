@@ -38,4 +38,10 @@ impl GameLoop for Status {
         );
         draw_text("Version: 0.1.1", screen_width() - 200.0, 60.0, 20.0, WHITE);
     }
+
+    fn wants_switch(&self) -> bool {
+        false
+    }
+
+    fn reset_switch(&mut self) {}
 }

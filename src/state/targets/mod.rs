@@ -8,6 +8,7 @@ pub struct Targets {
     targets: Vec<Ball>,
     score: f32,
     difficulty: f32,
+    wants_switch: bool,
 }
 
 impl Targets {
@@ -17,12 +18,16 @@ impl Targets {
             targets: Vec::new(),
             score: 0.0,
             difficulty: 60.0,
+            wants_switch: false,
         }
     }
 }
 
 impl GameLoop for Targets {
     fn handle_inputs(&mut self) {
+        if is_key_pressed(KeyCode::Space) {
+            self.wants_switch = true;
+        }
         let (x, y) = mouse_position();
         self.player.update_coords(x, y);
         if is_mouse_button_pressed(MouseButton::Left) {
@@ -58,5 +63,13 @@ impl GameLoop for Targets {
             20.0,
             WHITE,
         );
+    }
+
+    fn wants_switch(&self) -> bool {
+        self.wants_switch
+    }
+
+    fn reset_switch(&mut self) {
+        self.wants_switch = false;
     }
 }

@@ -21,15 +21,23 @@ impl MainState {
 
 impl GameLoop for MainState {
     fn handle_inputs(&mut self) {
-        if is_key_pressed(KeyCode::Enter) || touches().len() >= 3 {
-            self.current = (self.current + 1) % self.states.len();
-        }
         self.states[self.current].handle_inputs();
     }
     fn update(&mut self) {
+        let current = self.current;
+        if self.states[current].wants_switch() {
+            self.current = (self.current + 1) % self.states.len();
+            self.states[current].reset_switch();
+        }
         self.states[self.current].update();
     }
     fn draw(&self) {
         self.states[self.current].draw();
     }
+
+    fn wants_switch(&self) -> bool {
+        false
+    }
+
+    fn reset_switch(&mut self) {}
 }

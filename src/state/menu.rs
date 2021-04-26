@@ -2,6 +2,7 @@ use crate::GameLoop;
 use macroquad::prelude::*;
 pub struct Menu {
     message: String,
+    wants_switch: bool,
     y: f32,
 }
 
@@ -10,12 +11,16 @@ impl Menu {
         Menu {
             message: String::from("Menu mode!"),
             y: 20.0,
+            wants_switch: false,
         }
     }
 }
 
 impl GameLoop for Menu {
     fn handle_inputs(&mut self) {
+        if is_key_pressed(KeyCode::Enter) {
+            self.wants_switch = true;
+        }
         if is_key_pressed(KeyCode::Up) {
             self.y -= 20.0;
         }
@@ -27,5 +32,13 @@ impl GameLoop for Menu {
 
     fn draw(&self) {
         draw_text(&self.message, 200.0, self.y, 20.0, WHITE);
+    }
+
+    fn wants_switch(&self) -> bool {
+        self.wants_switch
+    }
+
+    fn reset_switch(&mut self) {
+        self.wants_switch = false;
     }
 }
