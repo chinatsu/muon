@@ -2,37 +2,37 @@ use super::{Menu, Targets, Tetris};
 use crate::GameLoop;
 use macroquad::prelude::*;
 pub struct MainState {
-    states: Vec<Box<dyn GameLoop>>,
-    current: usize,
+    components: Vec<Box<dyn GameLoop>>,
+    index: usize,
 }
 
 impl MainState {
     pub fn new() -> MainState {
         MainState {
-            states: vec![
+            components: vec![
                 Box::new(Menu::new()),
                 Box::new(Tetris::new()),
                 Box::new(Targets::new()),
             ],
-            current: 0,
+            index: 0,
         }
     }
 }
 
 impl GameLoop for MainState {
     fn handle_inputs(&mut self) {
-        self.states[self.current].handle_inputs();
+        self.components[self.index].handle_inputs();
     }
     fn update(&mut self) {
-        let current = self.current;
-        if self.states[current].wants_switch() {
-            self.current = (self.current + 1) % self.states.len();
-            self.states[current].reset_switch();
+        let index = self.index;
+        if self.components[index].wants_switch() {
+            self.index = (self.index + 1) % self.components.len();
+            self.components[index].reset_switch();
         }
-        self.states[self.current].update();
+        self.components[self.index].update();
     }
     fn draw(&self) {
-        self.states[self.current].draw();
+        self.components[self.index].draw();
     }
 
     fn wants_switch(&self) -> bool {

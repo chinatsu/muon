@@ -9,7 +9,7 @@ pub struct Menu {
 impl Menu {
     pub fn new() -> Menu {
         Menu {
-            message: String::from("Menu mode!"),
+            message: String::from("Menu mode! Press Enter to cycle modes"),
             y: 20.0,
             wants_switch: false,
         }

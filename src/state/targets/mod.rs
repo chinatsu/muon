@@ -9,6 +9,7 @@ pub struct Targets {
     score: f32,
     difficulty: f32,
     wants_switch: bool,
+    respawned: usize,
 }
 
 impl Targets {
@@ -19,6 +20,7 @@ impl Targets {
             score: 0.0,
             difficulty: 60.0,
             wants_switch: false,
+            respawned: 0,
         }
     }
 }
@@ -48,8 +50,11 @@ impl GameLoop for Targets {
 
     fn update(&mut self) {
         if self.targets.is_empty() {
+            self.respawned += 1;
             self.difficulty = (self.difficulty - 0.1).max(1.0);
-            self.targets.push(Ball::new(self.difficulty));
+            for _ in 0..(10usize).pow(self.respawned as u32) {
+                self.targets.push(Ball::new(self.difficulty));
+            }
         }
     }
 
@@ -59,6 +64,13 @@ impl GameLoop for Targets {
         draw_text(
             &format!("Score: {:.2}", self.score),
             screen_width() - 200.0,
+            100.0,
+            20.0,
+            WHITE,
+        );
+        draw_text(
+            &format!("Press Space to cycle modes"),
+            100.0,
             100.0,
             20.0,
             WHITE,

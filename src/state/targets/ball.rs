@@ -1,8 +1,7 @@
 use crate::random_color;
 use macroquad::color::Color;
-use macroquad::miniquad::date;
 use macroquad::prelude::{draw_circle, screen_height, screen_width};
-use macroquad::rand::{rand, srand};
+use macroquad::rand::rand;
 
 #[derive(Clone, Copy)]
 pub struct Ball {
@@ -14,7 +13,6 @@ pub struct Ball {
 
 impl Ball {
     pub fn new(radius: f32) -> Ball {
-        srand(date::now() as u64);
         Ball {
             x: (rand() as f32 + radius) % screen_width(),
             y: (rand() as f32 + radius) % screen_height(),
@@ -24,7 +22,6 @@ impl Ball {
     }
 
     pub fn with_color(radius: f32, color: Color) -> Ball {
-        srand(date::now() as u64);
         Ball {
             x: (rand() as f32 + radius) % screen_width(),
             y: (rand() as f32 + radius) % screen_height(),

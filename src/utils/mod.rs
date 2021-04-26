@@ -1,6 +1,5 @@
 use macroquad::color::{Color, BLACK};
-use macroquad::miniquad::date;
-use macroquad::rand::{gen_range, srand};
+use macroquad::rand::gen_range;
 
 pub fn from_hex(hex: &str) -> Color {
     match hex[1..]
@@ -19,7 +18,6 @@ pub fn from_hex(hex: &str) -> Color {
 }
 
 pub fn random_color() -> Color {
-    srand(date::now() as u64);
     let r = gen_range::<u8>(0, 255);
     let g = gen_range::<u8>(0, 255);
     let b = gen_range::<u8>(0, 255);

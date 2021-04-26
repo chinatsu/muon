@@ -9,7 +9,7 @@ pub struct Tetris {
 impl Tetris {
     pub fn new() -> Tetris {
         Tetris {
-            message: String::from("Some other mode!"),
+            message: String::from("Some other mode! Press Q to cycle modes"),
             y: 20.0,
             wants_switch: false,
         }

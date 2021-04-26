@@ -36,7 +36,7 @@ impl GameLoop for Status {
             20.0,
             WHITE,
         );
-        draw_text("Version: 0.1.1", screen_width() - 200.0, 60.0, 20.0, WHITE);
+        draw_text("Version: 0.1.2", screen_width() - 200.0, 60.0, 20.0, WHITE);
     }
 
     fn wants_switch(&self) -> bool {
