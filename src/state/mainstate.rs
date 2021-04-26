@@ -21,7 +21,7 @@ impl MainState {
 
 impl GameLoop for MainState {
     fn handle_inputs(&mut self) {
-        if is_key_pressed(KeyCode::Enter) {
+        if is_key_pressed(KeyCode::Enter) || touches().len() >= 3 {
             self.current = (self.current + 1) % self.states.len();
         }
         self.states[self.current].handle_inputs();
