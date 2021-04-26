@@ -1,5 +1,5 @@
+use macroquad::miniquad::date;
 use macroquad::prelude::*;
-use std::time::SystemTime;
 
 mod utils;
 use utils::{from_hex, random_color};
@@ -24,9 +24,5 @@ async fn main() {
 }
 
 fn seed_randomizer() {
-    let time = SystemTime::now()
-        .duration_since(SystemTime::UNIX_EPOCH)
-        .unwrap_or_else(|e| std::panic::panic_any(e));
-    let seed: u64 = time.subsec_millis() as u64 + time.subsec_nanos() as u64;
-    rand::srand(seed);
+    rand::srand(date::now() as u64);
 }
